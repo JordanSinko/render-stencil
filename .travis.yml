@@ -1,0 +1,19 @@
+sudo: required
+dist: trusty
+addons:
+  sonarcloud:
+    organization: 'jordansinko-github'
+language: node_js
+node_js:
+  - '10'
+  - '8'
+  - '6'
+script: yarn test
+
+jobs:
+  include:
+    - stage: analyze
+      node_js: '10'
+      script:
+        - yarn cover
+        - sonar-scanner
