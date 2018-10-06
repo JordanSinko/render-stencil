@@ -17,10 +17,10 @@ module.exports = function render(stencil, view, options) {
   if (typeof matcher === 'undefined') matcher = /{{([a-zA-Z.-_0-9]+)}}/;
 
   var regex = new RegExp(matcher, 'g');
-  var exclusions = excludes.reduce(
-    (map, excl) => ((map[excl] = true), map),
-    {}
-  );
+  var exclusions = excludes.reduce((map, excl) => {
+    map[excl] = true;
+    return map;
+  }, {});
 
   var exact;
   var stenciled = stencil.replace(regex, (original, path) => {
