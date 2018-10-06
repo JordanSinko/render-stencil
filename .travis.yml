@@ -1,8 +1,3 @@
-sudo: required
-dist: trusty
-addons:
-  sonarcloud:
-    organization: 'jordansinko-github'
 language: node_js
 node_js:
   - '10'
@@ -13,7 +8,12 @@ script: yarn test
 jobs:
   include:
     - stage: analyze
+      sudo: required
+      dist: trusty
       node_js: '10'
+      addons:
+        sonarcloud:
+          organization: 'jordansinko-github'
       script:
         - yarn cover
         - sonar-scanner
